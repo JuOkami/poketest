@@ -1,3 +1,10 @@
 <h1>
-{{titre}}
+Les generations de Pokemons
 </h1>
+
+
+  <div *ngFor="let g of generations">
+    <h2>{{g.nom}}</h2>
+    <div *ngIf="g.nom == 'Generation I'"><app-pokemons></app-pokemons></div>
+  </div>
+
