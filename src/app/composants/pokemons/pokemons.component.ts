@@ -12,12 +12,10 @@ private _pokemons : Pokemon[];
 
   constructor() {
     this._pokemons = [];
-    this._pokemons.push(new Pokemon("Bulbizarre", "Graine", ["Plante", "Poison"], 0.7, 6.9));
-    this._pokemons.push(new Pokemon("Herbizarre", "Graine", ["Plante", "Poison"], 1, 13));
-    this._pokemons.push(new Pokemon("Florizarre", "Graine", ["Plante", "Poison"], 2, 100));
-    this._pokemons.push(new Pokemon("Salamèche", "Lézard", ["Feu"], 0.6, 8.5));
-    this._pokemons.push(new Pokemon("Reptincel", "Flamme", ["Feu"], 1.1, 19));
-    this._pokemons.push(new Pokemon("Dracaufeu", "Flamme", ["Feu", "Vol"], 1.7, 90.5));
+
+    for (let i = 1; i <= 1010-0; i++) {
+      this._pokemons.push(this.createPokemon(i));
+    }
 
   }
   get pokemons(): Pokemon[] {
@@ -28,5 +26,30 @@ private _pokemons : Pokemon[];
     this._pokemons = value;
   }
 
+  public createPokemon(indice:number){
+    let nouveauPokemon = new Pokemon("", indice, [], 0, 0, "image");
+    fetch('https://pokeapi.co/api/v2/pokemon/'+indice)
+      .then(reponse => reponse.json())
+      .then(
+        json => {
+          nouveauPokemon.nom = this.miseEnForme(json.name);
+          nouveauPokemon.taille = json.height/10;
+          nouveauPokemon.poids = json.weight/10;
+          nouveauPokemon.image = json['sprites']['other']['official-artwork']['front_default'];
+          nouveauPokemon.type.push(this.miseEnForme(json.types[0].type.name));
+          if (json.types[1]){
+            nouveauPokemon.type.push(this.miseEnForme(json.types[1].type.name));
+          }
+        }
+      )
+    return nouveauPokemon;
+  }
 
+  public miseEnForme(texte:string){
+    return texte.charAt(0).toUpperCase()+texte.slice(1);
+  }
+
+  getColorClass(p: Pokemon) {
+    return "classeType"+p.type[0];
+  }
 }

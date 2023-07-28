@@ -1,20 +1,24 @@
 <div class="pokedex">
-<div class="entreePokedex" *ngFor="let p of pokemons">
-  <h4>{{p.nom}}</h4>
-  <ul>
-   <li>
-      Catégorie : {{p.categorie}}
-    </li>
-    <li>
-      <span *ngIf="p.type.length ==2">Types : {{p.type[0]}}/{{p.type[1]}}</span>
-      <span *ngIf="p.type.length ==1">Type : {{p.type[0]}}</span>
-    </li>
-  <li>
-    Taille : <span>{{p.taille}} m</span>
-  </li>
-  <li>
-    Poids : <span>{{p.poids}} kg</span>
-  </li>
-  </ul>
-</div>
+  <div class="entreePokedex" *ngFor="let p of pokemons" [ngClass]="getColorClass(p)">
+
+    <h2 style="text-align: center">{{p.nom}}</h2>
+    <div class="contenuPokedex" >
+      <img class="illustrationPokedex" src={{p.image}} />
+      <ul>
+        <li>
+            N° : {{p.numero}}
+        </li>
+        <li>
+            <span *ngIf="p.type.length ==2">Types : {{p.type[0]}}/{{p.type[1]}}</span>
+            <span *ngIf="p.type.length ==1">Type : {{p.type[0]}}</span>
+        </li>
+        <li>
+          Taille : <span>{{p.taille}} m</span>
+        </li>
+        <li>
+          Poids : <span>{{p.poids}} kg</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

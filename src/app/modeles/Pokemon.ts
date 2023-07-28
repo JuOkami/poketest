@@ -1,20 +1,21 @@
 export class Pokemon{
 
   private _nom:string;
-  private _categorie:string;
+  private _numero:number;
   private _type:string[];
   private _taille:number;
   private _poids:number;
+  private _image:string;
 
 
-  constructor(nom: string, categorie: string, type: string[], taille: number, poids: number) {
+  constructor(nom: string, numero: number, type: string[], taille: number, poids: number, image: string) {
     this._nom = nom;
-    this._categorie = categorie;
+    this._numero = numero;
     this._type = type;
     this._taille = taille;
     this._poids = poids;
+    this._image = image;
   }
-
 
   get nom(): string {
     return this._nom;
@@ -24,12 +25,12 @@ export class Pokemon{
     this._nom = value;
   }
 
-  get categorie(): string {
-    return this._categorie;
+  get numero(): number {
+    return this._numero;
   }
 
-  set categorie(value: string) {
-    this._categorie = value;
+  set numero(value: number) {
+    this._numero = value;
   }
 
   get type(): string[] {
@@ -55,4 +56,14 @@ export class Pokemon{
   set poids(value: number) {
     this._poids = value;
   }
+
+  get image(): string {
+    return this._image;
+  }
+
+  set image(value: string) {
+    this._image = value;
+  }
+
+
 }
